@@ -83,3 +83,17 @@ To start the production server:
 ```bash
 npm start
 ```
+
+## Deployment to Render.com
+
+This project includes a `render.yaml` file, making it ready for a true 1-click deployment on [Render](https://render.com/).
+
+### Steps to Deploy:
+1. Push this code to a new repository on GitHub (or GitLab).
+2. Log into your Render dashboard.
+3. Click **New** -> **Blueprint**.
+4. Connect the repository containing this code.
+5. Render will automatically detect the settings in `render.yaml`. Apply the blueprint!
+6. (Optional) Provide your MongoDB Atlas connection string in the Render Dashboard environment settings for `--MONGODB_URI--` if you want persistent data. If left blank, it falls back to the in-memory fallback state.
+
+Your app will be built and deployed automatically!

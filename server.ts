@@ -3,25 +3,17 @@ import { createServer as createViteServer } from "vite";
 import mongoose from "mongoose";
 import path from "path";
 import betRoutes from "./backend/routes/betRoutes.js";
+import { connectDB } from "./backend/config/db.js";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
   // Middleware
   app.use(express.json());
 
-  // Connect to MongoDB if URI is provided
-  if (process.env.MONGODB_URI) {
-    try {
-      await mongoose.connect(process.env.MONGODB_URI);
-      console.log('Connected to MongoDB');
-    } catch (err) {
-      console.error('MongoDB connection error. Falling back to in-memory mode.', err);
-    }
-  } else {
-    console.log('No MONGODB_URI found. Running backend with in-memory fallback state.');
-  }
+  // Connect to MongoDB
+  await connectDB();
 
   // API Routes MUST come before Vite middleware
   app.use('/api', betRoutes);
