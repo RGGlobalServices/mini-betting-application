@@ -26,7 +26,7 @@ A clean, production-ready mini betting application.
 *   `POST /api/add-balance`: Allows users to add deposit amounts to their wallet balance.
 
 ### Business Logic
-*   Initial balance is set to **100 USD**.
+*   Initial balance is set to **1000 USD**.
 *   When winning, the bet amount is added to the balance (essentially keeping the bet and gaining an equal amount).
 *   Data is stored in MongoDB using Mongoose. If no `MONGODB_URI` environment variable is available, the app falls back to an in-memory state so it still functions in preview modes.
 

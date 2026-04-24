@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
   balance: {
     type: Number,
     required: true,
-    default: 100
+    default: 1000
   }
 }, { timestamps: true });
 

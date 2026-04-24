@@ -3,14 +3,14 @@ import { User } from '../models/User.js';
 import mongoose from 'mongoose';
 
 // Fallback balance for when MongoDB is not connected in the preview environment
-let fallbackBalance = 100;
+let fallbackBalance = 1000;
 
 export const getBalance = async (req: Request, res: Response): Promise<void> => {
   try {
     if (mongoose.connection.readyState === 1) {
       let user = await User.findOne();
       if (!user) {
-        user = await User.create({ balance: 100 });
+        user = await User.create({ balance: 1000 });
       }
       res.json({ balance: user.balance });
       return;
@@ -44,7 +44,7 @@ export const placeBet = async (req: Request, res: Response): Promise<void> => {
     // Handle DB Logic
     if (mongoose.connection.readyState === 1) {
       let user = await User.findOne();
-      if (!user) user = await User.create({ balance: 100 });
+      if (!user) user = await User.create({ balance: 1000 });
 
       if (betAmount > user.balance) {
         res.status(400).json({ error: 'Insufficient balance' });
@@ -113,7 +113,7 @@ export const addBalance = async (req: Request, res: Response): Promise<void> => 
     // Handle DB Logic
     if (mongoose.connection.readyState === 1) {
       let user = await User.findOne();
-      if (!user) user = await User.create({ balance: 100 });
+      if (!user) user = await User.create({ balance: 1000 });
 
       user.balance += addAmount;
       await user.save();

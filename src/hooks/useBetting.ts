@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 
 export function useBetting() {
-  const [balance, setBalance] = useState<number>(100);
+  const [balance, setBalance] = useState<number>(1000);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isBetting, setIsBetting] = useState<boolean>(false);
   const [isDepositing, setIsDepositing] = useState<boolean>(false);
